@@ -22,28 +22,28 @@ public class PetronePacket : NSObject {
         return Data()
     }
     
-    public func getUInt8Array(data:Int16) -> [UInt8] {
+    public func int16ToUInt8Array(data:Int16) -> [UInt8] {
         return [UInt8(data & 0xff), UInt8(data >> 8)]
     }
     
-    public func getUInt8Array(data:UInt16) -> [UInt8] {
+    public func uint16ToUInt8Array(data:UInt16) -> [UInt8] {
         return [UInt8(data & 0x00ff), UInt8(data >> 8)]
     }
     
-    public class func getUInt8Array(data:Int32) -> [UInt8] {
+    public func int32ToUInt8Array(data:Int32) -> [UInt8] {
         return [UInt8(data & 0xff), UInt8((data >> 8) & 0xff), UInt8((data >> 16) & 0xff), UInt8((data >> 24) * 0xff)]
     }
     
-    public class func getUInt8Array(data:UInt32) -> [UInt8] {
+    public func uint32ToUInt8Array(data:UInt32) -> [UInt8] {
         return [UInt8(data & 0xff), UInt8((data >> 8) & 0xff), UInt8((data >> 16) & 0xff), UInt8((data >> 24) * 0xff)]
     }
     
-    public func getUInt8Array(data:Int64) -> [UInt8] {
+    public func int64ToUInt8Array(data:Int64) -> [UInt8] {
         return [UInt8(data & 0xff), UInt8((data >> 8) & 0xff), UInt8((data >> 16) & 0xff), UInt8((data >> 24) * 0xff),
                UInt8((data >> 32) & 0xff), UInt8((data >> 40) & 0xff), UInt8((data >> 48) * 0xff), UInt8((data >> 52) * 0xff)]
     }
     
-    public func getUInt8Array(data:UInt64) -> [UInt8] {
+    public func uint64ToUInt8Array(data:UInt64) -> [UInt8] {
         return [UInt8(data & 0xff), UInt8((data >> 8) & 0xff), UInt8((data >> 16) & 0xff), UInt8((data >> 24) * 0xff),
                 UInt8((data >> 32) & 0xff), UInt8((data >> 40) & 0xff), UInt8((data >> 48) * 0xff), UInt8((data >> 52) * 0xff)]
     }
