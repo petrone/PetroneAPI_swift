@@ -13,10 +13,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/petrone/PetroneAPI_swift"
   s.license      = { type: "MIT", file: "LICENSE" }
   s.author       = { "BYROBOT" => "dev@byrobot.co.kr" }
-  s.platform     = :ios, "10.0"
+  s.platform     = :ios
   s.source       = { :git => "https://github.com/petrone/PetroneAPI_swift.git", :tag => "#{s.version}" , submodules: true}
   s.source_files  = "PetroneAPI", "PetroneAPI/**/*.{h,m,swift}"
-  s.exclude_files = "PetroneAPI/Exclude"
-
-  s.framework  = "CoreBluetooth"
 end
