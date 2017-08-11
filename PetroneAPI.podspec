@@ -16,4 +16,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios
   s.source       = { :git => "https://github.com/petrone/PetroneAPI_swift.git", :tag => "#{s.version}" , submodules: true}
   s.source_files  = "PetroneAPI", "PetroneAPI/**/*.{h,m,swift}"
+  
+  s.framework  = "CoreBluetooth"
 end
