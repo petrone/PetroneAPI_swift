@@ -10,6 +10,8 @@ Pod::Spec.new do |s|
   s.name         = "PetroneAPI"
   s.version      = "0.0.3"
   s.summary      = "PetroneAPI for iOS."
+  s.platforms    = { :ios => '11.0' }
+  s.ios.deployment_target = '11.0'
   s.homepage     = "https://github.com/petrone/PetroneAPI_swift"
   s.license      = { type: "MIT" }
   s.author       = { "BYROBOT" => "dev@byrobot.co.kr" }
@@ -17,5 +19,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/petrone/PetroneAPI_swift.git", :tag => "#{s.version}" , submodules: true}
   s.source_files  = "PetroneAPI", "PetroneAPI/**/*.{h,m,swift}"
   s.framework    = "CoreBluetooth"
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4' }
 end
