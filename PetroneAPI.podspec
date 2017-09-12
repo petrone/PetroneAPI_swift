@@ -8,14 +8,14 @@
 
 Pod::Spec.new do |s|
   s.name         = "PetroneAPI"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "PetroneAPI for iOS."
   s.homepage     = "https://github.com/petrone/PetroneAPI_swift"
-  s.license      = { type: "MIT", file: "LICENSE" }
+  s.license      = { type: "MIT" }
   s.author       = { "BYROBOT" => "dev@byrobot.co.kr" }
   s.platform     = :ios
   s.source       = { :git => "https://github.com/petrone/PetroneAPI_swift.git", :tag => "#{s.version}" , submodules: true}
   s.source_files  = "PetroneAPI", "PetroneAPI/**/*.{h,m,swift}"
-  
-  s.framework  = "CoreBluetooth"
+  s.framework    = "CoreBluetooth"
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3' }
 end
