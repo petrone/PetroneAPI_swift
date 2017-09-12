@@ -109,10 +109,13 @@ class PetroneWIFI : PetroneController, StreamDelegate {
             }
         case Stream.Event.errorOccurred, Stream.Event.endEncountered:
             if( aStream.streamStatus != Stream.Status.notOpen && aStream.streamStatus != Stream.Status.closed  ) {
-                aStream.close()
-                aStream.remove(from: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+                self.outputStream.close()
+                self.inputStream.close()
+                outputStream.remove(from: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+                inputStream.remove(from: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+                
                 connected = false;
-                Petrone.instance.pairing(status:connected)
+                Petrone.instance.pairing(status:connected, reason:" WIFI disconnect : \(eventCode)")
             }
         default:
             NSLog("Unknown event")

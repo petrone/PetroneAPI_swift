@@ -52,7 +52,7 @@ public class Petrone {
     
     public var isPairing: Bool = false
     
-    func pairing(status:Bool) {
+    func pairing(status:Bool, reason:String = "" ) {
         isPairing = status;
         
         if isPairing {
@@ -80,6 +80,8 @@ public class Petrone {
             if timer != nil {
                 timer?.invalidate()
             }
+            
+            self.delegate?.petrone(reason)
         }
     }
     
@@ -130,9 +132,13 @@ public class Petrone {
     public func onConnect(_ target:String) {
         if target.contains("FPV") {
             petroneWIFI?.onConnect("FPV")
+            petroneBLE?.onStopScan()
         } else {
             petroneBLE?.onConnect(target)
+            petroneWIFI?.onStopScan()
         }
+        
+        petroneList.removeAll()
     }
     
     public func onDisconnect() {

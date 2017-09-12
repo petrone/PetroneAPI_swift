@@ -39,15 +39,13 @@ class PetroneBLE : PetroneController, CBCentralManagerDelegate, CBPeripheralDele
     // CBCentralManagerDelegate
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
-        case CBManagerState.poweredOff:
-            centralManager?.stopScan()
-            connected = false
         case CBManagerState.poweredOn:
             // Scan PETRONE service.
             centralManager?.scanForPeripherals(withServices: [CBUUID.init(string:"C320DF00-7891-11E5-8BCF-FEFF819CDC9F")], options: [CBCentralManagerScanOptionAllowDuplicatesKey:true])
             
-        default: break
-            
+        default:
+            centralManager?.stopScan()
+            connected = false
         }
     }
     
@@ -97,7 +95,7 @@ class PetroneBLE : PetroneController, CBCentralManagerDelegate, CBPeripheralDele
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         connected = false
-        Petrone.instance.pairing(status:connected)
+        Petrone.instance.pairing(status:connected, reason: "didFailToConnect")
         
         discoveredPeripheral = nil
         targetCharacter = nil
@@ -107,7 +105,7 @@ class PetroneBLE : PetroneController, CBCentralManagerDelegate, CBPeripheralDele
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         connected = false
-        Petrone.instance.pairing(status:connected)
+        Petrone.instance.pairing(status:connected, reason: "didDisconnectPeripheral")
         
         discoveredPeripheral = nil
         targetCharacter = nil
