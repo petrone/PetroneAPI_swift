@@ -9,7 +9,7 @@
 import Foundation
 
 class PetronePacketRequest : PetronePacket {
-    public var dataType:UInt8 = 0
+    public var dataType:UInt8 = PetroneDataType.State.rawValue
     
     override init() {
         super.init()
@@ -19,7 +19,7 @@ class PetronePacketRequest : PetronePacket {
     override func getBluetoothData() -> Data {
         var sendArray = Data()
         sendArray.append(PetroneDataType.Request.rawValue)
-        sendArray.append(PetroneDataType.State.rawValue)
+        sendArray.append(dataType)
         
         return sendArray
     }
@@ -31,8 +31,8 @@ class PetronePacketRequest : PetronePacket {
         baseArray.append(dataType)
         
         var sendArray = Data()
-        sendArray.append(0x0a)
-        sendArray.append(0x55)
+        sendArray.append(UInt8(0x0a))
+        sendArray.append(UInt8(0x55))
         sendArray.append(baseArray)
         sendArray.append(contentsOf: PetroneCRC.getCRC(data: baseArray, dataLength: size+2))
         

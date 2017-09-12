@@ -46,38 +46,38 @@ class PetroneCRC {
     
     class final func getCRC( data : UnsafePointer<UInt8>, dataLength: Int) -> [UInt8] {
         var crc: UInt16 = 0
-        for i in 0...(dataLength) {
+        for i in 0...(dataLength-1) {
             let dataIndex = Int((crc >> 8) ^ UInt16(data[i]) & 0x00FF)
             crc = ((crc << 8) ^ crc16table[dataIndex] )
         }
         
-        return [UInt8(crc >> 8),UInt8(crc & 0x00ff)]
+        return Array(Data(bytes:&crc, count:2))
     }
     
     class final func getCRC( data : Data, dataLength: Int) -> [UInt8] {
         var crc: UInt16 = 0
-        for i in 0...(dataLength) {
+        for i in 0...(dataLength-1) {
             let dataIndex = Int((crc >> 8) ^ UInt16(data[i]) & 0x00FF)
             crc = ((crc << 8) ^ crc16table[dataIndex] )
         }
         
-        return [UInt8(crc >> 8),UInt8(crc & 0x00ff)]
+        return Array(Data(bytes:&crc, count:2))
     }
     
     class final func getCRC( header: UnsafePointer<UInt8>, headerLength:Int, data : UnsafePointer<UInt8>, dataLength: Int) -> [UInt8] {
         var crc: UInt16 = 0
         
-        for i in 0...(headerLength) {
+        for i in 0...(headerLength-1) {
             let dataIndex = Int((crc >> 8) ^ UInt16(header[i]) & 0x00FF)
             crc = ((crc << 8) ^ crc16table[dataIndex] )
         }
         
-        for i in 0...(dataLength) {
+        for i in 0...(dataLength-1) {
             let dataIndex = Int((crc >> 8) ^ UInt16(data[i]) & 0x00FF)
             crc = ((crc << 8) ^ crc16table[dataIndex] )
         }
         
-        return [UInt8(crc >> 8),UInt8(crc & 0x00ff)]
+        return Array(Data(bytes:&crc, count:2))
     }
     
 }

@@ -18,8 +18,9 @@ public class Petrone {
     private var prevControlTime: Int64 = 0
     private var controller:PetroneController?
     private var petroneBLE: PetroneBLE?
+    private var petroneWIFI: PetroneWIFI?
     
-    private static let sendInterval:TimeInterval = 1.0 / 20 // send packet max 20fps
+    private var sendInterval:TimeInterval = 1.0 / 20 // send packet max 20fps
     
     private var timer: Timer? = nil
     private var packetList : Array<PetronePacket> = Array<PetronePacket>()
@@ -55,14 +56,24 @@ public class Petrone {
         isPairing = status;
         
         if isPairing {
-            controller = petroneBLE
+            if (petroneBLE?.connected)! {
+                controller = petroneBLE
+                self.sendInterval = 1.0 / 20
+            } else if (petroneWIFI?.connected)! {
+                controller = petroneWIFI
+                self.sendInterval = 1.0 / 40
+            }
             
             if timer == nil {
                 prevControlTime = getCurrentMillis()
-                timer = Timer.scheduledTimer(timeInterval: Petrone.sendInterval, target: self, selector:(#selector(onSend)), userInfo: nil, repeats: true)
+                timer = Timer.scheduledTimer(timeInterval: self.sendInterval, target: self, selector:(#selector(onSend)), userInfo: nil, repeats: true)
             }
             
-            self.delegate?.petrone(controller!, didConnect: (petroneBLE?.discoveredPeripheral?.name)!)
+            if (petroneBLE?.connected)! {
+                self.delegate?.petrone(controller!, didConnect: (petroneBLE?.discoveredPeripheral?.name)!)
+            } else  if (petroneWIFI?.connected)! {
+                self.delegate?.petrone(controller!, didConnect: "PETRONE FPV")
+            }
         } else {
             controller = nil
             
@@ -91,9 +102,17 @@ public class Petrone {
     public func onScan() {
         if petroneBLE == nil {
             petroneBLE = PetroneBLE()
-        } else if !(petroneBLE?.isScanning())! {
+        }
+        
+        if !(petroneBLE?.isScanning())! {
             petroneBLE?.onScan()
         }
+        
+        if petroneWIFI == nil {
+            petroneWIFI = PetroneWIFI()
+        }
+        
+        petroneWIFI?.onScan()
     }
     
     public func onStopScan() {
@@ -101,14 +120,24 @@ public class Petrone {
             petroneBLE?.onStopScan()
             petroneList.removeAll()
         }
+        
+        if petroneBLE != nil {
+            petroneWIFI?.onStopScan()
+            petroneList.removeAll()
+        }
     }
     
     public func onConnect(_ target:String) {
-        petroneBLE?.onConnect(target)
+        if target.contains("FPV") {
+            petroneWIFI?.onConnect("FPV")
+        } else {
+            petroneBLE?.onConnect(target)
+        }
     }
     
     public func onDisconnect() {
         petroneBLE?.onDisConnect()
+        petroneWIFI?.onDisConnect()
     }
     
     public func takeOff() {
@@ -396,6 +425,11 @@ public class Petrone {
         packetList.insert(packet, at: packetList.count)
     }
     
+    /*!
+     *  @method recvPacket:
+     *
+     *  @param data    recved data ( [UInt8] )
+     */
     public func recvPacket(data:Data) {
         switch ( data[0] as UInt8 ){
         case PetroneDataType.Ack.rawValue:
@@ -497,7 +531,7 @@ public class Petrone {
     }
     
     @objc private func onSend() {
-        if petroneBLE != nil && petroneBLE!.connected {
+        if controller != nil && controller!.connected {
             if status != nil {
                 if (status?.modeFlight.rawValue)! > PetroneModeFlight.Ready.rawValue || (status?.mode == PetroneMode.Drive) {
                     let current = getCurrentMillis()
@@ -521,7 +555,8 @@ public class Petrone {
             
             if packetList.count > 0 {
                 let packet:PetronePacket = packetList.removeFirst()
-                petroneBLE?.sendPacket(packet)
+                controller?.sendPacket(packet)
+                //petroneBLE?.sendPacket(packet)
             }
         }
     }

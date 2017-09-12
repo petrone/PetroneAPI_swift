@@ -11,8 +11,6 @@ import Foundation
 import CoreBluetooth
 
 class PetroneBLE : PetroneController, CBCentralManagerDelegate, CBPeripheralDelegate{
-    var connected: Bool = false;
-    
     var centralManager: CBCentralManager?
     var discoveredPeripheral : CBPeripheral?
     var targetCharacter: String? = nil

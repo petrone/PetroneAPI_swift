@@ -35,8 +35,8 @@ class PetronePacketLedMode : PetronePacket {
         baseArray.append(led.interval)
         
         var sendArray = Data()
-        sendArray.append(0x0a)
-        sendArray.append(0x55)
+        sendArray.append(UInt8(0x0a))
+        sendArray.append(UInt8(0x55))
         sendArray.append(baseArray)
         sendArray.append(contentsOf: PetroneCRC.getCRC(data: baseArray, dataLength: size+2))
         

@@ -21,9 +21,18 @@ public protocol PetroneProtocol : NSObjectProtocol {
      *  @param petroneController    The send petroneController
      *  @param response             Response PetroneDataType
      *
-     *  @discussion            This method is invoked when the @recv of PetroneDataType Ack response.
+     *  @discussion            This method is invoked when the connect to PETRONE
      */
     func petrone(_ petroneController:PetroneController, didConnect complete:String )
+    /*!
+     *  @method disconnected:
+     *
+     *  @param petroneController    The send petroneController
+     *  @param response             Response PetroneDataType
+     *
+     *  @discussion            This method is invoked when the disconnected frome PETRONE
+     */
+    func petrone(_ petroneController:PetroneController, disconnected reason:String )
     /*!
      *  @method recvFromPetroneResponse:
      *

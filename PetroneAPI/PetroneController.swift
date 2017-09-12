@@ -9,6 +9,7 @@
 import Foundation
 
 public class PetroneController : NSObject {
+    public var connected:Bool = false
     public func sendPacket(_ packet:PetronePacket, isResponsible:Bool = false) {}
     public func isScanning() -> Bool            { return true }
     public func onScan()                        {}

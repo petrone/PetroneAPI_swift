@@ -40,8 +40,8 @@ class PetronePacketChangeTrim : PetronePacket {
         baseArray.append(contentsOf: super.int16ToUInt8Array(data: drive.wheel))
         
         var sendArray = Data()
-        sendArray.append(0x0a)
-        sendArray.append(0x55)
+        sendArray.append(UInt8(0x0a))
+        sendArray.append(UInt8(0x55))
         sendArray.append(baseArray)
         sendArray.append(contentsOf: PetroneCRC.getCRC(data: baseArray, dataLength: size+2))
         

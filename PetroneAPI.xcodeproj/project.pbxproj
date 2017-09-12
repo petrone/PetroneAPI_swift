@@ -51,6 +51,7 @@
 		895FCFE11F3C176A008954F3 /* PetronePacketRequestTrimFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895FCF811F3BE5E3008954F3 /* PetronePacketRequestTrimFlight.swift */; };
 		895FCFE21F3C176A008954F3 /* PetronePacketStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895FCF821F3BE5E3008954F3 /* PetronePacketStatus.swift */; };
 		895FCFE31F3C176A008954F3 /* PetronePacketTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895FCF831F3BE5E3008954F3 /* PetronePacketTemperature.swift */; };
+		89955FBB1F66574200BACC6B /* PetroneWIFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89955FBA1F66574200BACC6B /* PetroneWIFI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		895FCF851F3BE5E3008954F3 /* PetroneStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetroneStructs.swift; sourceTree = "<group>"; };
 		895FCF861F3BE5E3008954F3 /* PetroneEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetroneEnums.swift; sourceTree = "<group>"; };
 		895FCF871F3BE5E3008954F3 /* Petrone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petrone.swift; sourceTree = "<group>"; };
+		89955FBA1F66574200BACC6B /* PetroneWIFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetroneWIFI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				895FCF5C1F3BE5E3008954F3 /* JoypadProtocol.swift */,
 				895FCF871F3BE5E3008954F3 /* Petrone.swift */,
 				895FCF5B1F3BE5E3008954F3 /* PetroneBLE.swift */,
+				89955FBA1F66574200BACC6B /* PetroneWIFI.swift */,
 				895FCF5D1F3BE5E3008954F3 /* PetroneController.swift */,
 				895FCF861F3BE5E3008954F3 /* PetroneEnums.swift */,
 				895FCF851F3BE5E3008954F3 /* PetroneStructs.swift */,
@@ -328,6 +331,7 @@
 				895FCFD61F3C176A008954F3 /* PetronePacketBattery.swift in Sources */,
 				895FCFD01F3C1763008954F3 /* PetronePacketRotate180.swift in Sources */,
 				895FCFCF1F3C1763008954F3 /* PetronePacketResetHeading.swift in Sources */,
+				89955FBB1F66574200BACC6B /* PetroneWIFI.swift in Sources */,
 				895FCFDD1F3C176A008954F3 /* PetronePacketRange.swift in Sources */,
 				895FCFCD1F3C1763008954F3 /* PetronePacketLedMode2.swift in Sources */,
 				895FCFC31F3C1763008954F3 /* PetronePacketControl.swift in Sources */,
