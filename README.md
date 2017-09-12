@@ -13,4 +13,5 @@ PETRONE API for iOS
 - PetroneWIFI.swift add
 - PetroneCRC bug fix
 - PetroneProtocols add disconnect function
+
   func petrone(_ disconnectedReason:String )
