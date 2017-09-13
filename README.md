@@ -5,7 +5,7 @@ PETRONE API for iOS
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 ## Requirements
-- iOS 11.0GM+ / OSX 10.12+
+- iOS 10.0+ / OSX 10.12+
 - Xcode 9.0GM+ / Swift 4.0
 - CoreBluetooth
 
