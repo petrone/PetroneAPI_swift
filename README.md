@@ -6,12 +6,13 @@ PETRONE API for iOS
 
 ## Requirements
 - iOS 10.0+ / OSX 10.12+
-- Xcode 9.0GM+ / Swift 4.0
+- **Xcode 9.0GM+ / Swift 4.0**
 - CoreBluetooth
 
 ## 0.0.3 update information
 - PetroneWIFI.swift add
 - PetroneCRC bug fix
 - PetroneProtocols add disconnect function
-
+```swift
   func petrone(_ disconnectedReason:String )
+```
