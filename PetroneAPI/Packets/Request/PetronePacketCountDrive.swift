@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PetronePacketRequestCountDrive : PetronePacketRequest {
+class PetronePacketCountDrive : PetronePacketRequest {
     override init() {
         super.init()
         dataType = PetroneDataType.CountDrive.rawValue

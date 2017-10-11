@@ -19,7 +19,7 @@ class PetronePacketLedMode2 : PetronePacket {
     
     override func getBluetoothData() -> Data {
         var sendArray = Data()
-        sendArray.append(PetroneDataType.LedMode.rawValue)
+        sendArray.append(PetroneDataType.LedMode2.rawValue)
         sendArray.append(led1.mode)
         sendArray.append(led1.color)
         sendArray.append(led1.interval)
@@ -32,7 +32,7 @@ class PetronePacketLedMode2 : PetronePacket {
     
     override func getSerialData() -> Data {
         var baseArray = Data()
-        baseArray.append(PetroneDataType.LedMode.rawValue)
+        baseArray.append(PetroneDataType.LedMode2.rawValue)
         baseArray.append(UInt8(size))
         baseArray.append(led1.mode)
         baseArray.append(led1.color)

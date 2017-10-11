@@ -17,7 +17,7 @@ class PetronePacketCoordinatesChange : PetronePacketLedCommand {
         lightColor = PetroneColors.Green
         interval = 100
         repeatCount = 3
-        command = PetroneCommand.ModePetrone
+        command = PetroneCommand.Coordinate
     }
     
     override func getBluetoothData() -> Data {

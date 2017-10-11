@@ -364,12 +364,12 @@ public class Petrone {
     }
     
     public func requestCountFlight() {
-        let packet:PetronePacketRequestTrimDrive = PetronePacketRequestTrimDrive()
+        let packet:PetronePacketCountFlight = PetronePacketCountFlight()
         self.sendPacket(packet)
     }
     
     public func requestCountDrive() {
-        let packet:PetronePacketRequestTrimDrive = PetronePacketRequestTrimDrive()
+        let packet:PetronePacketCountDrive = PetronePacketCountDrive()
         self.sendPacket(packet)
     }
     

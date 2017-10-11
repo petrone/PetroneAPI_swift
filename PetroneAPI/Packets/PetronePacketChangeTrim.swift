@@ -19,7 +19,7 @@ class PetronePacketChangeTrim : PetronePacket {
     
     override func getBluetoothData() -> Data {
         var sendArray = Data()
-        sendArray.append(PetroneDataType.Control.rawValue)
+        sendArray.append(PetroneDataType.TrimAll.rawValue)
         sendArray.append(contentsOf: super.int16ToUInt8Array(data: flight.roll))
         sendArray.append(contentsOf: super.int16ToUInt8Array(data: flight.pitch))
         sendArray.append(contentsOf: super.int16ToUInt8Array(data: flight.yaw))
@@ -31,7 +31,7 @@ class PetronePacketChangeTrim : PetronePacket {
     
     override func getSerialData() -> Data {
         var baseArray = Data()
-        baseArray.append(PetroneDataType.Control.rawValue)
+        baseArray.append(PetroneDataType.TrimAll.rawValue)
         baseArray.append(UInt8(size))
         baseArray.append(contentsOf: super.int16ToUInt8Array(data: flight.roll))
         baseArray.append(contentsOf: super.int16ToUInt8Array(data: flight.pitch))
